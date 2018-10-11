@@ -37,8 +37,9 @@ class UserManager: # 사용자관리 및 채팅 메세지 전송을 담당하는
 
     def messageHandler(self, username, msg): # 전송한 msg를 처리하는 부분
         if msg[0] !='/'
+        
 # def string_xor(data, key):
-#     j = 0
+#     j = 0 123456789
 #     result = ''
 #
 #     for i in range(len(data)):
