@@ -1,7 +1,8 @@
 import socket, sys, math
+import socketserver
 import threading
 
-HOST = ''
+HOST = '192.168.0.6'
 PORT = 7777
 lock = threading.Lock() # syncronized 동기화 진행하는 스레드 생성
                         # 1 채팅 서버로 입장한 사용자의 등록
@@ -52,7 +53,7 @@ class UserManager: # 사용자관리 및 채팅 메세지 전송을 담당하는
         for conn, addr in self.users.values():
             conn.send(msg.encode())
             
-class MyTcpHandler(socketsever.BaseRequestHandler):
+class MyTcpHandler(socketserver.BaseRequestHandler):
     userman = UserManager()
     
     def handle(self): # 클라이언트가 접속시 클라이언트 주소 출력

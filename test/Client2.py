@@ -1,5 +1,5 @@
 import socket
-form threding import Thread
+from threading import Thread
 
 HOST = '192.168.0.6'
 PORT = 7777
