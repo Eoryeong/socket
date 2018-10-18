@@ -173,5 +173,9 @@ def runGame():
     pygame.quit() #pygame을 종료합니다.
 
 # 초기화 함수
+def initGame():
+    global gamepad, clock, fighter, enemy, bullet # 화면, 프레임, 비행기 변수 선언, 적 선언
 
+    pygame.init()
+    gamepad = pygame.display.set_mode((pad_width, pad_height))
 
