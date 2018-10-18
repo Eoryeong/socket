@@ -120,6 +120,22 @@ while True:
     pygame.draw.rect(t_surface, (0, 0, 255, 127), (30, 30, 40, 40))  # t_surface에 투명도를 적용하여 그려줌
     screen.blit(t_surface, (0, 0))                  # t_surface를 기본 Surface에 blit
 
+# 텍스트 출력하기
+
+    fontObj = pygame.font.Font('myfont.ttf', 32)                    # 현재 디렉토리로부터 myfont.ttf 폰트 파일을 로딩한다. 텍스트 크기를 32로 한다
+    textSurfaceObj = fontObj.render('Hello Font!', True, GREEN)     # 텍스트 객체를 생성한다. 첫번째 파라미터는 텍스트 내용, 두번재는 Anti-aliasing 사용 여부, 세번째는 텍스트 컬러를 나타낸다
+    textRectObj = textSurfaceObj.get_rect();                        # 텍스트 객체의 출력 위치를 가져온다
+    textRectObj.center = (150, 150)                                 # 텍스트 객체의 출력 중심 좌표를 설정한다
+    screen.blit(textSurfaceObj, textRectObj)                        # 설정한 위치에 텍스트 객체를 출력한다
+
+    # Font 객체 생성의 다른 예
+    fontObj = pygame.font.Font(None, 32)                                # 폰트 파일에 None을 지정할 경우 기본 폰트가 사용된다
+    fontObj = pygame.font.Font('C:\\Window\\Fonts\\tahoma.ttf', 32)     # 윈도우 경로에 있는 폰트를 사용할 경우
+
+    # render 함수 사용의 다른 예
+    textSurfaceObj = fontObj.render('Hello font!', True, GREEN, BLUE)   # 텍스트 색을 녹색, 배경색을 파란색으로 설정한다
+
+
 import sys
 # 윈도우의 닫기 버튼이 눌렸을 때, 프로그램을 종료하도록 처리
 for event in pygame.event.get():
