@@ -62,3 +62,33 @@ while True:
 
     # 게임의 상태를 화면에 그려주는 부분
 
+    screen.fill(BLACK) # 화면을 검은색으로 지운다
+
+    pygame.draw.line(screen, GREEN, (10, 0) (20, 10)) # 두 점을 지나는 선을 그린다
+
+    # 수동으로 점 찍기
+    pixelArray = pygame.PixelArray(screen)
+    pixelArray[5][5] = RED
+    pixelArray[10][10] = RED
+    del pixelArray
+
+    # 이미지 파일 그리기
+    screen.blit(img, (50, 100))
+
+    # 이미지 파일 회전하여 그리기
+    x = 200
+    y = 100
+    degree = 30
+    rotated = pygame.trasform.rotate(img, degree)
+    rect = rotated.get_rect()
+    rect.center = (x, y)
+    screen.blit(rotated, rect)
+
+    # 텍스트 오브젝트를 출력
+    screen.blit(textSurfaceObj, textRectObj)
+
+    pygame.display.flip() # 화면 전체를 업데이트
+    clock.tick(TARGET_FPS) # 프레임 수 맞추기
+
+
+
