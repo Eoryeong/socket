@@ -135,6 +135,21 @@ while True:
     # render 함수 사용의 다른 예
     textSurfaceObj = fontObj.render('Hello font!', True, GREEN, BLUE)   # 텍스트 색을 녹색, 배경색을 파란색으로 설정한다
 
+# 사운드 출력하기
+
+    soundObj = pygame.mixer.Sound('beeps.wav')          # 사운드 파일을 로딩한다
+    soundObj.play()                                     # 사운드 파일을 플레이한다 (플레이가 끝나는 것을 기다리지 않고 바로 리턴된다)
+
+    # 5초 후에 플레이를 정지하는 경우
+    import time
+
+    soundObj.play()
+    time.sleep(5)
+    soundObj.stop()
+
+    # 반복해서 플레이하는 경우 (BGM)
+    pygame.mixer.music.load('background.mp3')
+    pygame.mixer.music.play(-1, 0, 0)
 
 import sys
 # 윈도우의 닫기 버튼이 눌렸을 때, 프로그램을 종료하도록 처리
