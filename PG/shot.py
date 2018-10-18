@@ -107,3 +107,33 @@ def runGame():
             x = pad_width - fighter_width
 
         # 게이머 전투기가 적과 충돌했는지 체크
+        if y < enemy_y + enmey_height:
+            if(enemy_x > x and enemy_x < x + fighter_width) or \
+                    (enemy_x + enemy_width > x and enemy_x + enemy_width < x + fighter_width):
+                    crash()
+        drawObject(fighter, x, y) # 비행기를 화면의 (x,y) 좌표에 그림
+        # 전투기 무기 발사 화면에 그리기
+        if len(bullet_xy) != 0:
+            for i, bxy in enumerate(bullet_xy): # 총알요소에대해 반복함
+                bxy[1] -= 10 # 총알의 y좌표를 -10함 (위로이동)
+                bullet_xy[i][1] =bxy[1]
+
+        #전투기 무기 발사 화면에 그리기
+        if len(bullet_xy) ! = 0:
+            for i, bxy in enumerate(bluut_xt): # 총알요소에대해 반복함
+                bxy[1] -= 10 # 총알의 y좌표룰 -10함 (위로 이동)
+                bullet_xy[i[1] = bxy[1
+
+                #전투기 무기가 적을격추했을 경우
+                if bxy [1] < enemy_y:
+                    if bxy[0] > enemy_x, and bxy[0] < enemy_x + enemy_width:
+                        bullet_xy.remove(bxy)
+                        inshot = True
+                        shotcount += 1
+                if bxy [1] <= 0: #총알이 화면밖을 벗어나면
+                    try:
+                        bullet_xy.remove(bxy) # 총알을 제거한다.
+                    except:
+                        pass
+
+            
