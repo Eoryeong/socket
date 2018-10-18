@@ -50,3 +50,60 @@ def gameover():
 def drawObject(obj, x, y):
     global gamepad
     gamepad.blit(obj,(x, y))
+
+# 실행 메인 함수
+def runGame():
+    global gamepad, clock, fighter, enemy, bullet
+
+    # 적이 맞았을 경우 True로 설정되는 플래그
+    isShot = False
+    shotcount = 0
+    enemypassed = 0
+
+    # 무기 좌표를 위한 리스트 자료
+    bullet_xy = []
+
+    # 전투기 초기 위치 (x, y)
+    x = pad_width * 0.45
+    y = pad_height * 0.9
+    x_change = 0
+
+    # 적 초기위치 설정
+    enemy_x = random.randrange(0, pad_width - enemy_width)
+    enemy_y = 0
+    enemy_speed = 3
+
+    ongame = False
+    while not ongame:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # 마우스로 창을 닫는 이벤트
+                doneFlag = True
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    x_change -= 5
+
+                elif event.key == pygame.K_RIGHT:
+                    x_change += 5
+
+                # 왼쪽 컨트롤 키를 누르면 무기 발사. 무기는 한 번 에 2발만 발사됨
+                elif event.key == pygame.K_SPACE:
+                    if len(bullet_xy) < 3:
+                        bullet_x = x + fighter_width/2
+                        bullet_y = y - fighter_height
+                        bullet_xy.append([bullet_x, bullet_y])
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                    x_change = 0
+
+        gamepad.fill(BLACK)  #게임화면을 검은색으로 채우고 화면을 업데이트함
+
+        # 전투기 위치를 재조정
+        x += x_change
+        if x < 0:
+            x = 0
+        elif x > pad_width - fighter_width:
+            x = pad_width - fighter_width
+
+        # 게이머 전투기가 적과 충돌했는지 체크
