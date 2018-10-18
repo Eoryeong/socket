@@ -34,5 +34,31 @@ textRectObj.center = (150, 200)
 soundObj = pygame.mixer.Sound('beeps.wav')
 
 # 메인 루프
+while True:
+    for event in pygame.event.get():
+        # 이벤트를 처리하는 부분
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
 
+        # 키보드 이벤트 처리
+        if event.type == KEYDOWN:
+            if event.key == K_RIGHT:
+                # 오른쪽 키가 눌리면 사운드를 플레이한다
+                soundObj.play()
+
+        # 마우스 이벤트 처리
+        if event.type == MOUSEBUTTONDOWN and event.button == LEFT:
+            # 왼쪽 버튼이 눌렸을 때의 처리
+            print("left mouse up (%d, %d)" % event.pos)
+        elif event.type == MOUSEBUTTONUP and event.button == LEFT:
+            # 왼쪽 버튼이 떨어졌을 때의 처리
+            print("left mouse down (%d, %d)" % event.pos)
+        elif event.type == pygame.MOUSEMOTION:
+            # 마우스 이동시의 처리
+            print("mouse move (%d, %d)" % event.pos)
+
+    # 게임의 상태를 업데이트 하는 부분
+
+    # 게임의 상태를 화면에 그려주는 부분
 
