@@ -136,4 +136,42 @@ def runGame():
                     except:
                         pass
 
-            
+        if len(bullet_xy) != 0:
+            for bx,by in bullet_xy:
+                drawObject(bullet,bx,by)
+
+        drawScore(shotcount)
+
+        # 적을 아래로 움직임
+        enemy_y += enemy_speed
+
+        if enemy_y > pad_height:
+            enemy_y = 0
+            enemy_x = random.randrange(0, pad_width - enemy_width)
+            enemypassed += 1
+
+        if enemypassed == 3:
+            gameover()
+
+        drawPassed(enemypassed)
+
+        # 적이 무기에 맞았는지 체크하고 맞았으면 스피드 업
+        if isShot:
+            enemy_speed += 1
+            if enemy_speed >= 10:
+                enemy_speed = 10
+
+            enemy_x = random.randrange(0, pad_width-enemy_width)
+            enemy_y = 0
+            isShot = False
+        drawObject(enemy, enemy_x, enemy_y)
+
+
+        pygame.display.update() # 화면을 다시그림
+        clock.tick(60) # 화면의 초당 프레임수를 60으로 설정
+
+    pygame.quit() #pygame을 종료합니다.
+
+# 초기화 함수
+
+
