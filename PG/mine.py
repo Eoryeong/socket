@@ -49,11 +49,11 @@ def Print():
     print()
 
 # 주위의 지뢰 찾는 함수
-def minecheck(i,j):
+def minecheck(i, j):
     global box
     c = 0
     if i == 0 and j == 0:
-        if box[i][0] == 9:
+        if box[1][0] == 9:
             c += 1
         if box[0][1] == 9:
             c += 1
@@ -89,8 +89,8 @@ def minecheck(i,j):
             c += 1
         if box[1][j+1] == 9:
             c += 1
-        if box[1][j+1] == 9:
-            c ++ 1
+        if box[1][j-1] == 9:
+            c += 1
     elif j == 0:
         if box[i][1] == 9:
             c += 1
@@ -132,9 +132,9 @@ def minecheck(i,j):
             c += 1
         if box[i+1][j+1] == 9:
             c += 1
-        if [i-1][j] == 9:
+        if box[i-1][j] == 9:
             c += 1
-        if [i+1][j] == 9:
+        if box[i+1][j] == 9:
             c += 1
         if box[i-1][j-1] == 9:
             c += 1
@@ -185,12 +185,12 @@ def makemap():
                 temp.append(9)
             else:
                 temp.append(0)
-        box.append()
+        box.append(temp)
     # minecheck 함수를 사용해 지뢰 갯수 표시
     for i in range(box_num):
         for j in range(box_num):
             if box[i][j] == 0:
-                box[i][j] = minecheck(i,j)
+                box[i][j] = minecheck(i,j);
 
 # 재귀 함수를 사용한 공백 지우기
 def blank_break(i, j):
@@ -200,7 +200,7 @@ def blank_break(i, j):
         box_show[i][j] = 0
         if i == 0 and j == 0:
 
-            if box[1][0] ==0:
+            if box[1][0] == 0:
                 blank_break(1, 0)
             else:
                 box_show[1][0] = 0
@@ -213,39 +213,44 @@ def blank_break(i, j):
             if box[1][1] == 0:
                 blank_break(1, 1)
             else:
-                box_show[1][1] =0
+                box_show[1][1] = 0
 
         elif i == 0 and j == box_num - 1:
 
             if box[1][box_num - 1] == 0:
                 blank_break(1, box_num - 1)
             else:
-                box_show[1][box_num - 1] =0
+                box_show[1][box_num - 1] = 0
 
             if box[0][box_num - 2] == 0:
                 blank_break(0, box_num - 2)
             else:
-                box_show[1][box_num - 2] =0
+                box_show[0][box_num - 2] = 0
 
-        elif i == box_num-1 and j == box_num - 1:
+            if box[1][box_num - 2] == 0:
+                blank_break(1, box_num - 2)
+            else:
+                box_show[1][box_num - 2] = 0
 
-            if box[box_num -2][box_num - 1] == 0:
+        elif i == box_num-1 and j == box_num-1:
+
+            if box[box_num - 2][box_num - 1] == 0:
                 blank_break(box_num - 2, box_num - 1)
             else:
-                box_show[box_num - 2][box_num - 1] = 0:
+                box_show[box_num - 2][box_num - 1] = 0
 
             if box[box_num - 1][box_num - 2] == 0:
                 blank_break(box_num - 1, box_num - 2)
             else:
-                box_show[box_num - 1, box_num - 2] = 0
+                box_show[box_num - 1][box_num - 2] = 0
 
             if box[box_num - 2][box_num - 2] == 0:
                 blank_break(box_num - 2, box_num - 2)
             else:
                 box_show[box_num - 2][box_num - 2] = 0
-        #
-        elif i == box_num-1 and j == 0 :
-        #
+
+        elif i == box_num-1 and j == 0:
+
             if box[box_num - 1][1] == 0:
                 blank_break(box_num - 1, 1)
             else:
@@ -270,13 +275,13 @@ def blank_break(i, j):
 
             if box[0][j + 1] == 0:
                 blank_break(0, j + 1)
-            else :
+            else:
                 box_show[0][j + 1] = 0
 
             if box[1][j-1] == 0:
                 blank_break(1, j-1)
-            else :
-                box_show[1][j - 1] = 0
+            else:
+                box_show[1][j-1] = 0
 
             if box[1][j] == 0:
                 blank_break(1, j)
@@ -329,32 +334,32 @@ def blank_break(i, j):
 
             if box[box_num - 2][j-1] == 0:
                 blank_break(box_num - 2, j-1)
-            else :
-                box_show[box_num - 2][j] = 0
+            else:
+                box_show[box_num - 2][j-1] = 0
 
             if box[box_num - 2][j] == 0:
-                blank_break(box_rum - 2,j)
+                blank_break(box_num - 2, j)
             else:
                 box_show[box_num - 2][j] = 0
 
             if box[box_num - 2][j+1] == 0:
                 blank_break(box_num - 2, j+1)
-            else
+            else:
                 box_show[box_num - 2][j+1] = 0
 
         elif j == box_num-1:
 
             if box[i - 1][box_num - 1] == 0:
                 blank_break(i - 1, box_num - 1)
-            else :
-                box_show[i-1][box_num - 1] == 0
+            else:
+                box_show[i - 1][box_num - 1] = 0
 
-            if box[i+1][box_num - 1] == 0:
+            if box[i + 1][box_num - 1] == 0:
                 blank_break(i + 1, box_num - 1)
             else:
                 box_show[i + 1][box_num - 1] = 0
 
-            if box[i-1][box_rum - 2] == 0:
+            if box[i-1][box_num - 2] == 0:
                 blank_break(i-1, box_num - 2)
             else:
                 box_show[i-1][box_num - 2] = 0
@@ -369,49 +374,52 @@ def blank_break(i, j):
             else:
                 box_show[i+1][box_num - 2] = 0
 
-        else :
-            if box[i-1][j] == 0:
+
+        else:
+
+            if box[i - 1][j] == 0:
                 blank_break(i - 1, j)
             else:
                 box_show[i - 1][j] = 0
 
-            if box[i - 1][j - 1] == 0:
-                blank_break(i - 1, j - 1)
-            else
-                box_show[i - 1][j - 1] = 0
-
-            if box[i-1][j+1] == 0:
-                blank_break(i - 1, j + 1)
+            if box[i - 1][j-1] == 0:
+                blank_break(i - 1, j-1)
             else:
-                box_show[i - 1][j + 1] = 0
+                box_show[i - 1][j-1] = 0
+
+            if box[i - 1][j+1] == 0:
+                blank_break(i - 1, j+1)
+            else:
+                box_show[i - 1][j+1] = 0
 
             if box[i][j - 1] == 0:
                 blank_break(i, j - 1)
-            else :
-                box_show[i][j-1] = 0
+            else:
+                box_show[i][j - 1] = 0
 
             if box[i][j+1] == 0:
                 blank_break(i, j+1)
-            else :
+            else:
                 box_show[i][j+1] = 0
 
-            if box[i+1][j+1] == 0:
-                blank_break(i+1, j+1)
+            if box[i+1][j + 1] == 0:
+                blank_break(i+1, j + 1)
             else:
-                box_show[i+1][j+1]=0
+                box_show[i+1][j + 1] = 0
 
             if box[i+1][j] == 0:
                 blank_break(i+1, j)
             else:
-                box_show[i+1][i] = 0
+                box_show[i+1][j] = 0
 
-            if box [i+1][j - 1] == 0:
+            if box[i+1][j - 1] == 0:
                 blank_break(i+1, j - 1)
             else:
-                box_show[i+1][j-1] = 0
+                box_show[i+1][j - 1] = 0
+
     return
 
-# 블럭 한칸 부수기
+#블럭 한칸 부수기
 def break_block():
     global box
     global box_show
@@ -448,3 +456,29 @@ def break_block():
     return 1
 
 makemap()
+
+# 블럭 부수기 및 지뢰 체크 반복
+while True:
+    box_print()
+    print("좌표 뚫기 : 1 , 좌표 지뢰 체크 : 2")
+    a1 = int(input())
+    if a1 == 1:
+        n = break_block()
+        if n == 2:
+            break
+        if n == 0:
+            break
+        else:
+            continue
+    if a1 == 2:
+        #지뢰 체크 코
+        print("가로 (1~9) 세로 (1~9) : ")
+        str1 = input().split(" ")
+        y = int(str1[0]) - 1
+        x = int(str1[1]) - 1
+        if box_show[x][y] == 1:
+            box_show[x][y] = 2
+        elif box_show[x][y] == 2:
+            box_show[x][y] = 1
+        elif box_show[x][y] == 0:
+            print("이미 뚫린 곳입니다.")
