@@ -287,3 +287,126 @@ def blank_break(i, j):
                 blank_break(1, j+1)
             else:
                 box_show[1][j+1] = 0
+
+        elif j == 0:
+
+            if box[i - 1][0] == 0:
+                blank_break(i - 1, 0)
+            else:
+                box_show[i - 1][0] = 0
+
+            if box[i + 1][0] == 0:
+                blank_break(i + 1, 0)
+            else:
+                box_show[i + 1][0] = 0
+
+            if box[i-1][1] == 0:
+                blank_break(i-1, 1)
+            else:
+                box_show[i-1][1] = 0
+
+            if box[i][1] == 0:
+                blank_break(i, 1)
+            else:
+                box_show[i][1] = 0
+
+            if box[i+1][1] == 0:
+                blank_break(i+1, 1)
+            else:
+                box_show[i+1][1] = 0
+
+        elif i == box_num - 1:
+
+            if box[box_num - 1][j - 1] == 0:
+                blank_break(box_num - 1, j - 1)
+            else:
+                box_show[box_num - 1][j - 1] = 0
+
+            if box[box_num - 1][j + 1] == 0:
+                blank_break(box_num - 1, j + 1)
+            else:
+                box_show[box_num - 1][j + 1] = 0
+
+            if box[box_num - 2][j-1] == 0:
+                blank_break(box_num - 2, j-1)
+            else :
+                box_show[box_num - 2][j] = 0
+
+            if box[box_num - 2][j] == 0:
+                blank_break(box_rum - 2,j)
+            else:
+                box_show[box_num - 2][j] = 0
+
+            if box[box_num - 2][j+1] == 0:
+                blank_break(box_num - 2, j+1)
+            else
+                box_show[box_num - 2][j+1] = 0
+
+        elif j == box_num-1:
+
+            if box[i - 1][box_num - 1] == 0:
+                blank_break(i - 1, box_num - 1)
+            else :
+                box_show[i-1][box_num - 1] == 0
+
+            if box[i+1][box_num - 1] == 0:
+                blank_break(i + 1, box_num - 1)
+            else:
+                box_show[i + 1][box_num - 1] = 0
+
+            if box[i-1][box_rum - 2] == 0:
+                blank_break(i-1, box_num - 2)
+            else:
+                box_show[i-1][box_num - 2] = 0
+
+            if box[i][box_num - 2] == 0:
+                blank_break(i, box_num - 2)
+            else:
+                box_show[i][box_num - 2] = 0
+
+            if box[i+1][box_num - 2] == 0:
+                blank_break(i+1, box_num - 2)
+            else:
+                box_show[i+1][box_num - 2] = 0
+
+        else :
+            if box[i-1][j] == 0:
+                blank_break(i - 1, j)
+            else:
+                box_show[i - 1][j] = 0
+
+            if box[i - 1][j - 1] == 0:
+                blank_break(i - 1, j - 1)
+            else
+                box_show[i - 1][j - 1] = 0
+
+            if box[i-1][j+1] == 0:
+                blank_break(i - 1, j + 1)
+            else:
+                box_show[i - 1][j + 1] = 0
+
+            if box[i][j - 1] == 0:
+                blank_break(i, j - 1)
+            else :
+                box_show[i][j-1] = 0
+
+            if box[i][j+1] == 0:
+                blank_break(i, j+1)
+            else :
+                box_show[i][j+1] = 0
+
+            if box[i+1][j+1] == 0:
+                blank_break(i+1, j+1)
+            else:
+                box_show[i+1][j+1]=0
+
+            if box[i+1][j] == 0:
+                blank_break(i+1, j)
+            else:
+                box_show[i+1][i] = 0
+
+            if box [i+1][j - 1] == 0:
+                blank_break(i+1, j - 1)
+            else:
+                box_show[i+1][j-1] = 0
+    return 
