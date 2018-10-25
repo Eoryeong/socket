@@ -427,8 +427,8 @@ def break_block():
     print("가로 (1~9 세로 (1~9:")
     str = input().split(" ")
 
-    y = int(str(0)-1)
-    x = int(str)()
+    y = int(str[0])-1
+    x = int(str[1])-1
 
     if box_show[x][y] == 1:
         if box[x][y] == 9:
