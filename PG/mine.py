@@ -143,3 +143,53 @@ def minecheck(i,j):
         if box[i+1][j-1] == 9:
             c += 1
     return c
+
+def makemap():
+    global box
+    global mine
+
+    box = []
+    check = 0
+    mine = []
+    # 지뢰 10개를 랜덤으로 만듦
+    for i in range(999):
+        same = False
+
+        x = random.randrange(0,box_num-1)
+        y = random.randrange(0,box_num-1)
+
+        # 중복 처리
+        for j in range(i-1):
+            if mine[j][0] == x and mine[j][1] == y:
+                same = True
+                break
+
+        if same:
+            continue
+        elif not same :
+            mine.append([x,y])
+            check += 1
+
+        if check == 10:
+            break
+
+    # 먼저 필드에 지뢰를 배치
+    for i in range(box_num):
+        temp = []
+        for j in range(box_num):
+            cm = False
+            for a in range(10):
+                if mine[a][0] == i and mine[a][1] == j:
+                    cm = True
+            if cm :
+                temp.append(9)
+            else:
+                temp.append(0)
+        box.append()
+    # minecheck 함수를 사용해 지뢰 갯수 표시
+    for i in range(box_num):
+        for j in range(box_num):
+            if box[i][j] == 0:
+                box[i][j] = minecheck(i,j)
+
+# 재귀 함수를 사용한 공백 지우기
