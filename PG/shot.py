@@ -178,4 +178,11 @@ def initGame():
 
     pygame.init()
     gamepad = pygame.display.set_mode((pad_width, pad_height))
+    pygame.display.set_caption('Shooting Game') #제목 지엉
+    fighter = pygame.image.load('fighter.png')
+    enemy = pygame.image.load('bullet.png')
+    clock = pygame.time.Clock()
+
+initGame()
+runGame()
 
