@@ -193,3 +193,97 @@ def makemap():
                 box[i][j] = minecheck(i,j)
 
 # 재귀 함수를 사용한 공백 지우기
+def blank_break(i, j):
+
+    if box_show[i][j] == 1 :
+
+        box_show[i][j] = 0
+        if i == 0 and j == 0:
+
+            if box[1][0] ==0:
+                blank_break(1, 0)
+            else:
+                box_show[1][0] = 0
+
+            if box[0][1] == 0:
+                blank_break(0, 1)
+            else:
+                box_show[0][1] = 0
+
+            if box[1][1] == 0:
+                blank_break(1, 1)
+            else:
+                box_show[1][1] =0
+
+        elif i == 0 and j == box_num - 1:
+
+            if box[1][box_num - 1] == 0:
+                blank_break(1, box_num - 1)
+            else:
+                box_show[1][box_num - 1] =0
+
+            if box[0][box_num - 2] == 0:
+                blank_break(0, box_num - 2)
+            else:
+                box_show[1][box_num - 2] =0
+
+        elif i == box_num-1 and j == box_num - 1:
+
+            if box[box_num -2][box_num - 1] == 0:
+                blank_break(box_num - 2, box_num - 1)
+            else:
+                box_show[box_num - 2][box_num - 1] = 0:
+
+            if box[box_num - 1][box_num - 2] == 0:
+                blank_break(box_num - 1, box_num - 2)
+            else:
+                box_show[box_num - 1, box_num - 2] = 0
+
+            if box[box_num - 2][box_num - 2] == 0:
+                blank_break(box_num - 2, box_num - 2)
+            else:
+                box_show[box_num - 2][box_num - 2] = 0
+        #
+        elif i == box_num-1 and j == 0 :
+        #
+            if box[box_num - 1][1] == 0:
+                blank_break(box_num - 1, 1)
+            else:
+                box_show[box_num - 1][1] = 0
+
+            if box[box_num - 2][0] == 0:
+                blank_break(box_num - 2, 0)
+            else:
+                box_show[box_num - 2][0] = 0
+
+            if box[box_num - 2][1] == 0:
+                blank_break(box_num - 2, 1)
+            else:
+                box_show[box_num - 2][1] = 0
+
+        elif i == 0:
+
+            if box[0][j - 1] == 0:
+                blank_break(0, j - 1)
+            else:
+                box_show[0][j - 1] = 0
+
+            if box[0][j + 1] == 0:
+                blank_break(0, j + 1)
+            else :
+                box_show[0][j + 1] = 0
+
+            if box[1][j-1] == 0:
+                blank_break(1, j-1)
+            else :
+                box_show[1][j - 1] = 0
+
+            if box[1][j] == 0:
+                blank_break(1, j)
+            else:
+                box_show[1][j] = 0
+
+            if box[1][j+1] == 0:
+                blank_break(1, j+1)
+            else:
+                box_show[1][j+1] = 0
