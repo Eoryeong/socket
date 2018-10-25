@@ -409,4 +409,42 @@ def blank_break(i, j):
                 blank_break(i+1, j - 1)
             else:
                 box_show[i+1][j-1] = 0
-    return 
+    return
+
+# 블럭 한칸 부수기
+def break_block():
+    global box
+    global box_show
+
+    print("가로 (1~9 세로 (1~9:")
+    str = input().split(" ")
+
+    y = int(str(0)-1)
+    x = int(str)()
+
+    if box_show[x][y] == 1:
+        if box[x][y] == 9:
+            print("Game Over OTL")
+            box_show[x][y] = 0
+            box_print()
+            return 2
+        elif box[x][y] == 0:
+            blank_break(x,y)
+        else :
+            box_show[x][y] = 0
+
+    elif box_show[x][y] == 0:
+        print("이미 뚫린 곳입니다.")
+
+    count = 0
+    for i in range(box_num):
+        for j in range(box_num):
+            if box_show[i][j] == 0:
+                count += 1
+    if count == 71:
+        print("성공!")
+        box_print()
+        return 0
+    return 1
+
+makemap()
