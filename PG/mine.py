@@ -35,3 +35,111 @@ def box_print():
                     a += " "+str(box[i][j])
         print(a)
     print()
+
+# 디버그용 출력
+def Print():
+    for i in range(box_num):
+        a = ""
+        for j in range(box_num):
+            if (box[i][j] == 9):
+                a += " ■"
+            else:
+                a += " "+str(box[i][j])
+        print(a)
+    print()
+
+# 주위의 지뢰 찾는 함수
+def minecheck(i,j):
+    global box
+    c = 0
+    if i == 0 and j == 0:
+        if box[i][0] == 9:
+            c += 1
+        if box[0][1] == 9:
+            c += 1
+        if box [1][1] == 9:
+            c += 1
+    elif i == 0 and j == box_num-1:
+        if box[1][box_num-1] == 9:
+            c += 1
+        if box[0][box_num-2] == 9:
+            c += 1
+        if box[1][box_num-2] == 9:
+            c += 1
+    elif i == box_num-1 and j == box_num-1:
+        if box[box_num-2][box_num-1] == 9:
+            c += 1
+        if box[box_num-2][box_num-2] == 9:
+            c += 1
+        if box[box_num-1][box_num-2] == 9:
+            c += 1
+    elif i == box_num-1 and j == 0:
+            if box[box_num-2][1] == 9:
+                c += 1
+            if box[box_num-1][1] == 9:
+                c += 1
+            if box[box_num-2][0] == 9:
+                c += 1
+    elif i == 0:
+        if box[1][j] == 9:
+            c += 1
+        if box[0][j+1] == 9:
+            c += 1
+        if box[0][j-1] == 9:
+            c += 1
+        if box[1][j+1] == 9:
+            c += 1
+        if box[1][j+1] == 9:
+            c ++ 1
+    elif j == 0:
+        if box[i][1] == 9:
+            c += 1
+        if box[i-1][0] == 9:
+            c += 1
+        if box[i+1][0] == 9:
+            c += 1
+        if box[i+1][1] == 9:
+            c += 1
+        if box[i-1][1] == 9:
+            c += 1
+    elif i == box_num -1:
+        if box[box_num-2][j] == 9:
+            c += 1
+        if box[box_num-1][j+1] == 9:
+            c += 1
+        if box[box_num-1][j-1] == 9:
+            c += 1
+        if box[box_num-2][j+1] == 9:
+            c += 1
+        if box[box_num-2][j-1] == 9:
+            c += 1
+
+    elif j == box_num-1:
+        if box[i][box_num-2] == 9:
+            c += 1
+        if box[i-1][box_num-1] == 9:
+            c += 1
+        if box[i+1][box_num-1] == 9:
+            c += 1
+        if box[i+1][box_num-2] == 9:
+            c += 1
+        if box[i-1][box_num-2] == 9:
+            c += 1
+    else :
+        if box[i-1][j+1] == 9:
+            c += 1
+        if box[i][j+1] == 9:
+            c += 1
+        if box[i+1][j+1] == 9:
+            c += 1
+        if [i-1][j] == 9:
+            c += 1
+        if [i+1][j] == 9:
+            c += 1
+        if box[i-1][j-1] == 9:
+            c += 1
+        if box[i][j-1] == 9:
+            c += 1
+        if box[i+1][j-1] == 9:
+            c += 1
+    return c
