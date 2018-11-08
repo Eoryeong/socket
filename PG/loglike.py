@@ -14,6 +14,7 @@ plusa = 0
 plusp = 0
 cri = 0
 pcri = 0
+shop = 0
 
 
 
@@ -118,7 +119,7 @@ def slime() :
         print("------------------------------------")
         time.sleep(1)
         if (sh <= 0) :
-            ph = ph + (gel * 5)
+            ph = ph + (gel * 3)
             print("남은체력 : ", ph)
             break
         print("슬라임의 공격!")
@@ -182,7 +183,7 @@ def zombie() :
         print("------------------------------------")
         time.sleep(1)
         if (zh <= 0) :
-            ph = ph + (gel * 5)
+            ph = ph + (gel * 3)
             print("남은체력 : ", ph)
             break
         print("좀비의 공격!")
@@ -246,7 +247,7 @@ def skeleton():
         print("------------------------------------")
         time.sleep(1)
         if (skh <= 0):
-            ph = ph + (gel * 5)
+            ph = ph + (gel * 3)
             print("남은체력 : ", ph)
             break
         print("해골기사의 공격!")
@@ -398,4 +399,53 @@ skeleton()
 time.sleep(2)
 skeletondrop()
 skh = 30
+time.sleep(2)
+if (zone == 1):
+    print("힘의 제단이다")
+    time.sleep(2)
+    pluspower = powergod()
+    print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
+    plusp = pluspower + plusp
+    print("힘 : ", plusp)
+elif (zone == 2):
+    print("주사위의 제단이다")
+    time.sleep(2)
+    plusdice = dicegod()
+    print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
+    dice = dice + plusdice
+    print("주사위 : ", dice)
+else :
+    print("치료소다")
+    time.sleep(2)
+    plushp = heal()
+    print("당신의 체력이 ", plushp, " 만큼 증가되었다")
+    ph = ph + plushp
+    print("체력 : ", plusp)
+time.sleep(2)
+while True :
+    print("----------상점----------")
+    print("아이템 사기 : 숫자 입력")
+    print("보유한 돈 : ", Pmoney)
+    print("1. 슬라임 점액 100원 | 2. 좀비 주사위 120원 | 3. 해골기사 머리 120원 | 4. 힘의 문장 80원 | 5. 가기")
+    print("----------상점----------")
+    shop = int(input())
+    if (shop == 1 and Pmoney >= 100) :
+        gel = gel + 1
+        Pmoney = Pmoney - 100
+        print("점액을 샀다")
+    elif (shop == 2 and Pmoney >= 120) :
+        zdice = zdice + 1
+        Pmoney = Pmoney - 120
+        print("주사위를 샀다")
+    elif (shop == 3 and Pmoney >= 120) :
+        skhead = skhead + 1
+        Pmoney = Pmoney - 120
+        print("머리를 샀다.")
+    elif (shop == 4 and Pmoney >= 80) :
+        plusp = plusp + 1
+        Pmoney = Pmoney - 80
+        print("강해졌다 힘 + 2")
+    elif (shop == 5):
+        print("나갔다")
+        break
 print("...")
