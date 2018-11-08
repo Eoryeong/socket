@@ -10,6 +10,7 @@ pdf = 0
 Pmoney = 0
 item = 0
 Pdice = 0
+plusp = 0
 cri = 0
 pcri = 0
 # 몹
@@ -19,12 +20,26 @@ zd = 0
 # 아이템 여부
 zdice = 0
 
+# 이벤트 함수
+
+    # 힘의 제단
+def powergod() :
+    ppw = random.randint(0, 5)
+    return ppw
+    # 주사위 제단
+def dicegod() :
+    pdd = random.randint(0, 2)
+    return pdd
+    # 치료소
+def heal() :
+    heal = random.randint(5, 20)
+    return heal
 # 드랍 함수
 def zomdrop() :
     it = random.randint(1, 20)
     return it
 # 치명타 함수
-def critcal():
+def critical():
     cri = random.randint(1, 10)
     return cri
 
@@ -52,7 +67,7 @@ def zombie() :
         drem = dice - att
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
-        pcri = critcal()
+        pcri = critical()
         print(pcri)
         if (pcri >= 8) :
             print("크리티컬!!")
@@ -115,4 +130,27 @@ time.sleep(2)
 zombiedrop()
 Pdice = zdice + 0
 zh = 20
+time.sleep(2)
+zone = random.randint(1, 3)
+if (zone == 1):
+    print("힘의 제단이다")
+    time.sleep(2)
+    pluspower = powergod()
+    print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
+    plusp = pluspower + plusp
+    print("힘 : ", plusp)
+elif (zone == 2):
+    print("주사위의 제단이다")
+    time.sleep(2)
+    plusdice = dicegod()
+    print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
+    Pdice = Pdice + plusdice
+    print("추가 주사위 : ", Pdice)
+else :
+    print("치료소다")
+    time.sleep(2)
+    plushp = heal()
+    print("당신의 체력이 ", plushp, " 만큼 증가되었다")
+    ph = ph + plushp
+    print("체력 : ", plusp)
 print("...")
