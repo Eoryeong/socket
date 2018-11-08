@@ -20,15 +20,28 @@ shop = 0
 
 # 몹
 Dmoney = 0
+# 좀비
 zh = 20
 zd = 0
+# 해골기사
 skh = 30
 skd = 0
+# 슬라임
 sh = 15
 sd = 0
+# 광전사
 berhp = 100
 berda = 0
 berpda = 10
+# 유령 회피
+goh = 30
+goda = 0
+# 사냥꾼
+huh = 50
+hud = 0
+# 거인
+jh = 150
+# 과학자
 
 
 
