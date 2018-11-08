@@ -10,6 +10,7 @@ pdf = 0
 Pmoney = 0
 item = 0
 Pdice = 0
+plusa = 0
 plusp = 0
 cri = 0
 pcri = 0
@@ -22,13 +23,15 @@ zh = 20
 zd = 0
 skh = 30
 skd = 0
+sh = 15
+sd = 0
 
 
 
 # 아이템 여부
 zdice = 0
 skhead = 0
-
+gel = 0
 
 
 # 이벤트 함수
@@ -49,10 +52,14 @@ def heal() :
 
 
 # 드랍 함수
+    # 슬라임
+def smdrop() :
+    sgel = random.randint(1, 20)
+    return sgel
     # 좀비
 def zomdrop() :
-    it = random.randint(1, 20)
-    return it
+    zomdice = random.randint(1, 20)
+    return zomdice
     # 해골 기사
 def skedrop() :
     shead = random.randint(1, 20)
@@ -67,18 +74,20 @@ def critical():
 
 
 # 전투 함수
-    # 좀비
-def zombie() :
-    print("좀비이즈 커밍")
+    # 슬라임
+def slime() :
+    print("슬라임이즈 커밍")
 
     while True:
-        global zh
+        global sh
         global ph
-        global zd
+        global sd
         global pcri
+        global pdf
         pda = 0
         pdf = 0
-        zd = 0
+        sd = 0
+        Pdice = zdice + 0
         time.sleep(2)
         print("당신의 턴")
         print("주사위 갯수", dice)
@@ -88,7 +97,7 @@ def zombie() :
         if (att > dice+Pdice ):
             print("갯수 초과", dice+Pdice, "개로 변경")
             att = dice+Pdice
-        drem = dice - att
+        drem = dice + Pdice - att
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
@@ -99,16 +108,82 @@ def zombie() :
             pda = pda * 2
         for j in range (0, drem):
             pdf = random.randint(1, 6) + pdf
-        print("공격력 : ", pda)
-        print("방어도 : ", pdf)
+        print("공격력 : ", pda, " + ", plusp)
+        print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
         pf = pdf
-        zh = zh - pda
+        sh = sh - (pda + plusp)
+
+        print("남은 슬라임의 체력 : ", sh)
+        print("------------------------------------")
+        time.sleep(1)
+        if (sh <= 0) :
+            ph = ph + (gel * 5)
+            print("남은체력 : ", ph)
+            break
+        print("슬라임의 공격!")
+        time.sleep(2)
+        sd = random.randint(2, 4)
+        print("슬라임의 공격력 : ", sd)
+        print("당신의 방어력 : ", pdf)
+        time.sleep(2)
+        if (pdf+skhead > 0) :
+            pdf = skhead * 5 + pdf - sd
+            sd = sd - pf
+            if (sd < 0):
+                sd = 0
+        print("슬라임의 남은 공격력 : ", sd)
+        ph = ph - sd
+        print("당신의 체력 : ", ph)
+        print("------------------------------------")
+
+
+    # 좀비
+def zombie() :
+    print("좀비이즈 커밍")
+
+    while True:
+        global zh
+        global ph
+        global zd
+        global pcri
+        global pdf
+        pda = 0
+        pdf = 0
+        zd = 0
+        Pdice = zdice + 0
+        time.sleep(2)
+        print("당신의 턴")
+        print("주사위 갯수", dice)
+        print("추가 주사위", Pdice)
+        print("공격할 횟수 (나머진 방어)")
+        att = int(input())
+        if (att > dice+Pdice ):
+            print("갯수 초과", dice+Pdice, "개로 변경")
+            att = dice+Pdice
+        drem = dice + Pdice - att
+        for i in range (0, att):
+            pda = random.randint(1, 6) + pda
+        pcri = critical()
+        print(pcri)
+        if (pcri >= 8) :
+            print("크리티컬!!")
+            time.sleep(2)
+            pda = pda * 2
+        for j in range (0, drem):
+            pdf = random.randint(1, 6) + pdf
+        print("공격력 : ", pda, " + ", plusp)
+        print("방어도 : ", pdf, " + ", skhead*5)
+        time.sleep(1)
+        pf = pdf
+        zh = zh - (pda + plusp)
 
         print("남은 좀비의 체력 : ", zh)
         print("------------------------------------")
         time.sleep(1)
         if (zh <= 0) :
+            ph = ph + (gel * 5)
+            print("남은체력 : ", ph)
             break
         print("좀비의 공격!")
         time.sleep(2)
@@ -117,7 +192,7 @@ def zombie() :
         print("당신의 방어력 : ", pdf)
         time.sleep(2)
         if (pdf > 0) :
-            pdf = pdf - zd
+            pdf = skhead * 5 + pdf - zd
             zd = zd - pf
             if (zd < 0):
                 zd = 0
@@ -136,9 +211,11 @@ def skeleton():
         global ph
         global skd
         global pcri
+        global pdf
         pda = 0
         pdf = 0
         skd = 0
+        Pdice = zdice + 0
         time.sleep(2)
         print("당신의 턴")
         print("주사위 갯수", dice)
@@ -148,7 +225,7 @@ def skeleton():
         if (att > dice + Pdice):
             print("갯수 초과", dice + Pdice, "개로 변경")
             att = dice + Pdice
-        drem = dice - att
+        drem = dice + Pdice - att
         for i in range(0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
@@ -159,16 +236,18 @@ def skeleton():
             pda = pda * 2
         for j in range(0, drem):
             pdf = random.randint(1, 6) + pdf
-        print("공격력 : ", pda)
-        print("방어도 : ", pdf)
+        print("공격력 : ", pda, " + ", plusp)
+        print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
         pf = pdf
-        skh = skh - pda
+        skh = skh - (pda + plusp)
 
         print("남은 해골기사의 체력 : ", skh)
         print("------------------------------------")
         time.sleep(1)
         if (skh <= 0):
+            ph = ph + (gel * 5)
+            print("남은체력 : ", ph)
             break
         print("해골기사의 공격!")
         time.sleep(2)
@@ -177,7 +256,7 @@ def skeleton():
         print("당신의 방어력 : ", pdf)
         time.sleep(2)
         if (pdf > 0):
-            pdf = pdf - skd
+            pdf = skhead * 5 + pdf - skd
             skd = skd - pf
             if (skd < 0):
                 skd = 0
@@ -189,6 +268,21 @@ def skeleton():
 
 
 # 보상 함수
+    # 슬라임 보상
+def smiledrop():
+    global Pmoney
+    global gel
+    Dmoney = random.randint(20, 40)
+    print(Dmoney, "원 드랍")
+    Pmoney = Pmoney + Dmoney
+    print("소지한 돈 : ", Pmoney)
+    item = smdrop()
+    print(item)
+    if (item%5 == 0):
+        gel = gel + 1
+        print("점액을 발견했다.")
+    print("------------------------------------")
+    time.sleep(2)
     # 좀비 보상
 def zombiedrop():
     global Pmoney
@@ -202,6 +296,8 @@ def zombiedrop():
     if (item%5 == 0):
         zdice = zdice + 1
         print("좀비 주사위를 발견했다.")
+    print("------------------------------------")
+    time.sleep(2)
     # 해골기사 보상
 def skeletondrop():
     global Pmoney
@@ -215,23 +311,22 @@ def skeletondrop():
     if (item%5 == 0):
         skhead = skhead + 1
         print("해골기사 머리를 발견했다.")
+    print("------------------------------------")
+    time.sleep(2)
 
 # 진행
-zombie()
+slime()
 time.sleep(2)
-zombiedrop()
-Pdice = zdice + 0
-zh = 20
-zombie()
+smiledrop()
+sh = 15
+slime()
 time.sleep(2)
-zombiedrop()
-Pdice = zdice + 0
-zh = 20
-zombie()
+smiledrop()
+sh = 15
+slime()
 time.sleep(2)
-zombiedrop()
-Pdice = zdice + 0
-zh = 20
+smiledrop()
+sh = 15
 time.sleep(2)
 zone = random.randint(1, 3)
 if (zone == 1):
@@ -246,8 +341,43 @@ elif (zone == 2):
     time.sleep(2)
     plusdice = dicegod()
     print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
-    Pdice = Pdice + plusdice
-    print("추가 주사위 : ", Pdice)
+    dice = dice + plusdice
+    print("주사위 : ", dice)
+else :
+    print("치료소다")
+    time.sleep(2)
+    plushp = heal()
+    print("당신의 체력이 ", plushp, " 만큼 증가되었다")
+    ph = ph + plushp
+    print("체력 : ", ph)
+time.sleep(2)
+zombie()
+time.sleep(2)
+zombiedrop()
+zh = 20
+zombie()
+time.sleep(2)
+zombiedrop()
+zh = 20
+zombie()
+time.sleep(2)
+zombiedrop()
+zh = 20
+zone = random.randint(1, 3)
+if (zone == 1):
+    print("힘의 제단이다")
+    time.sleep(2)
+    pluspower = powergod()
+    print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
+    plusp = pluspower + plusp
+    print("힘 : ", plusp)
+elif (zone == 2):
+    print("주사위의 제단이다")
+    time.sleep(2)
+    plusdice = dicegod()
+    print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
+    dice = dice + plusdice
+    print("주사위 : ", dice)
 else :
     print("치료소다")
     time.sleep(2)
@@ -259,7 +389,13 @@ time.sleep(2)
 skeleton()
 time.sleep(2)
 skeletondrop()
-Pdice = zdice + 0
 skh = 30
+skeleton()
 time.sleep(2)
+skeletondrop()
+skh = 30
+skeleton()
+time.sleep(2)
+skeletondrop()
+skh = 30
 print("...")
