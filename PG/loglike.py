@@ -531,4 +531,4 @@ while True :
         break
 time.sleep(2)
 berser()
-print("끝이다")
+print("끝이다요")
