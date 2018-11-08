@@ -139,6 +139,9 @@ def slime() :
         print("슬라임의 남은 공격력 : ", sd)
         ph = ph - sd
         print("당신의 체력 : ", ph)
+        if (ph <= 0) :
+            print("그렇습니다 당신은 망했습니다.")
+            exit()
         print("------------------------------------")
 
 
@@ -203,6 +206,9 @@ def zombie() :
         print("좀비의 남은 공격력 : ", zd)
         ph = ph - zd
         print("당신의 체력 : ", ph)
+        if (ph <= 0) :
+            print("그렇습니다 당신은 망했습니다.")
+            exit()
         print("------------------------------------")
 
 
@@ -267,6 +273,9 @@ def skeleton():
         print("해골기사의 남은 공격력 : ", skd)
         ph = ph - skd
         print("당신의 체력 : ", ph)
+        if (ph <= 0) :
+            print("그렇습니다 당신은 망했습니다.")
+            exit()
         print("------------------------------------")
     # 광전사
 def berser():
@@ -333,6 +342,9 @@ def berser():
         print("광전사의 남은 공격력 : ", berda)
         ph = ph - berda
         print("당신의 체력 : ", ph)
+        if (ph <= 0) :
+            print("그렇습니다 당신은 망했습니다.")
+            exit()
         print("------------------------------------")
 
 
