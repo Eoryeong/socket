@@ -9,14 +9,19 @@ drem = 0
 pda = 0
 pdf = 0
 Pmoney = 0
+item = 0
 # 몹
 Dmoney = 0
 zh = 20
 zd = 0
+# 아이템 여부
+zdice = 0
 
-# 공격 함수
-
-# 싸움
+# 드랍 함수
+def zomdrop() :
+    it = random.randint(1, 20)
+    return it
+# 싸움 함수
 def zombie() :
     print("좀비이즈 커밍")
 
@@ -60,9 +65,18 @@ def zombie() :
         ph = ph - zd
         print("당신의 체력 : ", ph)
         print("------------------------------------")
+
+# 진행
 zombie()
+time.sleep(2)
 Dmoney = random.randint(20, 40)
-print(Dmoney)
+print(Dmoney, "원 드랍")
 Pmoney = Pmoney + Dmoney
-print(Pmoney)
+print("소지한 돈 : ", Pmoney)
+item = zomdrop()
+print(item)
+if (item == item%5 == 0):
+    zdice = zdice + 1
+    print("find")
+
 print("...")
