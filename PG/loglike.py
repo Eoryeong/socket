@@ -36,6 +36,7 @@ berpda = 10
 zdice = 0
 skhead = 0
 gel = 0
+paxe = 0
 
 
 # 이벤트 함수
@@ -395,6 +396,18 @@ def skeletondrop():
         print("해골기사 머리를 발견했다.")
     print("------------------------------------")
     time.sleep(2)
+    # 광전사 보상
+def berdrop():
+    global Pmoney
+    global paxe
+    Dmoney = random.randint(100, 150)
+    print(Dmoney, "원 드랍")
+    Pmoney = Pmoney + Dmoney
+    print("소지한 돈 : ", Pmoney)
+    paxe = paxe + 1
+    print("광전사의 도끼를 발견했다.")
+    print("------------------------------------")
+    time.sleep(2)
 
 # 진행
 slime()
@@ -531,4 +544,7 @@ while True :
         break
 time.sleep(2)
 berser()
+time.sleep(2)
+berdrop()
+berhp = 100
 print("끝이다요")
