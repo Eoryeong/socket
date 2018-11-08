@@ -10,6 +10,8 @@ pdf = 0
 Pmoney = 0
 item = 0
 Pdice = 0
+cri = 0
+pcri = 0
 # 몹
 Dmoney = 0
 zh = 20
@@ -21,13 +23,20 @@ zdice = 0
 def zomdrop() :
     it = random.randint(1, 20)
     return it
-# 싸움 함수
+# 치명타 함수
+def critcal():
+    cri = random.randint(1, 10)
+    return cri
+
+# 전투 함수
 def zombie() :
     print("좀비이즈 커밍")
 
     while True:
         global zh
         global ph
+        global zd
+        global pcri
         pda = 0
         pdf = 0
         zd = 0
@@ -38,11 +47,17 @@ def zombie() :
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
         if (att > dice+Pdice ):
-            print("갯수 초과", dice, "개로 변경")
+            print("갯수 초과", dice+Pdice, "개로 변경")
             att = dice+Pdice
         drem = dice - att
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
+        pcri = critcal()
+        print(pcri)
+        if (pcri >= 8) :
+            print("크리티컬!!")
+            time.sleep(2)
+            pda = pda * 2
         for j in range (0, drem):
             pdf = random.randint(1, 6) + pdf
         print("공격력 : ", pda)
@@ -50,8 +65,10 @@ def zombie() :
         time.sleep(1)
         pf = pdf
         zh = zh - pda
+
         print("남은 좀비의 체력 : ", zh)
         print("------------------------------------")
+        time.sleep(1)
         if (zh <= 0) :
             break
         print("좀비의 공격!")
@@ -81,7 +98,7 @@ def zombiedrop():
     print(item)
     if (item%5 == 0):
         zdice = zdice + 1
-        print("find")
+        print("좀비 주사위를 발견했다.")
 # 진행
 zombie()
 time.sleep(2)
