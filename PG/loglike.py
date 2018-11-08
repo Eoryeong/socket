@@ -1,5 +1,4 @@
 import random
-import threading
 import time
 
 # 플레이어
@@ -10,6 +9,7 @@ pda = 0
 pdf = 0
 Pmoney = 0
 item = 0
+Pdice = 0
 # 몹
 Dmoney = 0
 zh = 20
@@ -34,8 +34,12 @@ def zombie() :
         time.sleep(2)
         print("당신의 턴")
         print("주사위 갯수", dice)
+        print("추가 주사위", Pdice)
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
+        if (att > dice+Pdice ):
+            print("갯수 초과", dice, "개로 변경")
+            att = dice+Pdice
         drem = dice - att
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
@@ -65,18 +69,33 @@ def zombie() :
         ph = ph - zd
         print("당신의 체력 : ", ph)
         print("------------------------------------")
-
+# 보상 함수
+def zombiedrop():
+    global Pmoney
+    global zdice
+    Dmoney = random.randint(20, 40)
+    print(Dmoney, "원 드랍")
+    Pmoney = Pmoney + Dmoney
+    print("소지한 돈 : ", Pmoney)
+    item = zomdrop()
+    print(item)
+    if (item%5 == 0):
+        zdice = zdice + 1
+        print("find")
 # 진행
 zombie()
 time.sleep(2)
-Dmoney = random.randint(20, 40)
-print(Dmoney, "원 드랍")
-Pmoney = Pmoney + Dmoney
-print("소지한 돈 : ", Pmoney)
-item = zomdrop()
-print(item)
-if (item == item%5 == 0):
-    zdice = zdice + 1
-    print("find")
-
+zombiedrop()
+Pdice = zdice + 0
+zh = 20
+zombie()
+time.sleep(2)
+zombiedrop()
+Pdice = zdice + 0
+zh = 20
+zombie()
+time.sleep(2)
+zombiedrop()
+Pdice = zdice + 0
+zh = 20
 print("...")
