@@ -373,7 +373,7 @@ def smiledrop():
     Pmoney = Pmoney + Dmoney
     print("소지한 돈 : ", Pmoney)
     item = smdrop()
-    # print(item)
+    print(item)
     if (item%5 == 0):
         gel = gel + 1
         print("점액을 발견했다.")
@@ -387,7 +387,7 @@ def zombiedrop():
     print(Dmoney, "원 드랍")
     Pmoney = Pmoney + Dmoney
     print("소지한 돈 : ", Pmoney)
-    # item = zomdrop()
+    item = zomdrop()
     print(item)
     if (item%5 == 0):
         zdice = zdice + 1
@@ -403,7 +403,7 @@ def skeletondrop():
     Pmoney = Pmoney + Dmoney
     print("소지한 돈 : ", Pmoney)
     item = skedrop()
-    # print(item)
+    print(item)
     if (item%5 == 0):
         skhead = skhead + 1
         print("해골기사 머리를 발견했다.")
@@ -492,7 +492,7 @@ else :
     plushp = heal()
     print("당신의 체력이 ", plushp, " 만큼 증가되었다")
     ph = ph + plushp
-    print("체력 : ", plusp)
+    print("체력 : ", ph)
 time.sleep(2)
 skeleton()
 time.sleep(2)
@@ -527,7 +527,7 @@ else :
     plushp = heal()
     print("당신의 체력이 ", plushp, " 만큼 증가되었다")
     ph = ph + plushp
-    print("체력 : ", plusp)
+    print("체력 : ", hp)
 time.sleep(2)
 while True :
     print("----------상점----------")
@@ -549,7 +549,7 @@ while True :
         Pmoney = Pmoney - 120
         print("머리를 샀다.")
     elif (shop == 4 and Pmoney >= 80) :
-        plusp = plusp + 1
+        plusp = plusp + 2
         Pmoney = Pmoney - 80
         print("강해졌다 힘 + 2")
     elif (shop == 5):
