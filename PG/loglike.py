@@ -37,14 +37,24 @@ berpda = 10
 # 2 stage
 # 유령 회피
 goh = 30
+goa = 5
 goda = 0
+godo = 0
 # 사냥꾼
 huh = 50
+hua = 5
 hud = 0
+hup = 3
 # 거인
 jh = 150
+jd = 0
+ja = 10
+jg = 0
 # 과학자
-
+sch = 400
+scd = 0
+sca = 10
+scp = 5
 
 
 # 아이템 여부
@@ -121,6 +131,7 @@ def slime() :
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
+	pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8) :
             print("크리티컬!!")
@@ -188,6 +199,7 @@ def zombie() :
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
+	pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8) :
             print("크리티컬!!")
@@ -255,6 +267,7 @@ def skeleton():
         for i in range(0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
+	pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8):
             print("크리티컬!!")
@@ -320,6 +333,7 @@ def berser():
         for i in range(0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
+	pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8):
             print("크리티컬!!")
