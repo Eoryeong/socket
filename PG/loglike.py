@@ -147,7 +147,7 @@ def slime() :
             pda = pda * 2
         for j in range (0, drem):
             pdf = random.randint(1, 6) + pdf
-        print("공격력 : ", pda, " + ", plusp)
+        print("공격력 : ", pda, " + ", plusp + (ghud*5))
         print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
         pf = pdf
@@ -219,7 +219,7 @@ def zombie() :
             pda = pda * 2
         for j in range (0, drem):
             pdf = random.randint(1, 6) + pdf
-        print("공격력 : ", pda, " + ", plusp)
+        print("공격력 : ", pda, " + ", plusp + (ghud*5))
         print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
         pf = pdf
@@ -291,7 +291,7 @@ def skeleton():
             pda = pda * 2
         for j in range(0, drem):
             pdf = random.randint(1, 6) + pdf
-        print("공격력 : ", pda, " + ", plusp)
+        print("공격력 : ", pda, " + ", plusp + (ghud*5))
         print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
         pdf = pdf + (skhead*5)
@@ -362,7 +362,7 @@ def berser():
             pda = pda * 2
         for j in range(0, drem):
             pdf = random.randint(1, 6) + pdf
-        print("공격력 : ", pda, " + ", plusp)
+        print("공격력 : ", pda, " + ", plusp + (ghud*5))
         print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
         pdf = pdf + (skhead * 5)
