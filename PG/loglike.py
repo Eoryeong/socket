@@ -62,6 +62,7 @@ zdice = 0
 skhead = 0
 gel = 0
 paxe = 0
+ghud = 0
 
 
 # 이벤트 함수
@@ -94,7 +95,10 @@ def zomdrop() :
 def skedrop() :
     shead = random.randint(1, 20)
     return shead
-
+    # 유령
+def ghdrop() :
+    ghu = random.randint(1, 20)
+    return ghu
 
 # 치명타 함수
 def critical():
@@ -131,7 +135,7 @@ def slime() :
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
-	pcri = (paxe * 2) + pcri
+        pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8) :
             print("크리티컬!!")
@@ -199,7 +203,7 @@ def zombie() :
         for i in range (0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
-	pcri = (paxe * 2) + pcri
+        pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8) :
             print("크리티컬!!")
@@ -267,7 +271,7 @@ def skeleton():
         for i in range(0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
-	pcri = (paxe * 2) + pcri
+        pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8):
             print("크리티컬!!")
@@ -333,7 +337,7 @@ def berser():
         for i in range(0, att):
             pda = random.randint(1, 6) + pda
         pcri = critical()
-	pcri = (paxe * 2) + pcri
+        pcri = (paxe * 2) + pcri
         # print(pcri)
         if (pcri >= 8):
             print("크리티컬!!")
@@ -371,6 +375,78 @@ def berser():
                 berda = 0
         print("광전사의 남은 공격력 : ", berda)
         ph = ph - berda
+        print("당신의 체력 : ", ph)
+        if (ph <= 0) :
+            print("그렇습니다 당신은 망했습니다.")
+            exit()
+        print("------------------------------------")
+
+    # 유령
+def zombie() :
+    print("좀비이즈 커밍")
+
+    while True:
+        global goh
+        global ph
+        global goda
+        global godo
+        global pcri
+        global pdf
+        pda = 0
+        pdf = 0
+        goda = 0
+        Pdice = zdice + 0
+        time.sleep(2)
+        print("당신의 턴")
+        print("주사위 갯수", dice)
+        print("추가 주사위", Pdice)
+        print("공격할 횟수 (나머진 방어)")
+        att = int(input())
+        if (att > dice+Pdice ):
+            print("갯수 초과", dice+Pdice, "개로 변경")
+            att = dice+Pdice
+        drem = dice + Pdice - att
+        for i in range (0, att):
+            pda = random.randint(1, 6) + pda
+        pcri = critical()
+        pcri = (paxe * 2) + pcri
+        # print(pcri)
+        if (pcri >= 8) :
+            print("크리티컬!!")
+            time.sleep(2)
+            pda = pda * 2
+        for j in range (0, drem):
+            pdf = random.randint(1, 6) + pdf
+        print("공격력 : ", pda, " + ", plusp)
+        print("방어도 : ", pdf, " + ", skhead*5)
+        godo = random.randint(1, 6)
+        if (godo > 4) :
+            time.sleep(1)
+            pf = pdf
+            goh = goh - (pda + plusp)
+        else :
+            print("!감나빗")
+
+        print("남은 유령의 체력 : ", goh)
+        print("------------------------------------")
+        time.sleep(1)
+        if (goh <= 0) :
+            ph = ph + (gel * 3)
+            print("남은체력 : ", ph)
+            break
+        print("유령의 공격!")
+        time.sleep(2)
+        goda = random.randint(5, 10)
+        print("유령의 공격력 : ", goda)
+        print("당신의 방어력 : ", pdf)
+        time.sleep(2)
+        if (pdf > 0) :
+            pdf = skhead * 5 + pdf - goda
+            goda = goda - pf
+            if (goda < 0):
+                goda = 0
+        print("유령의 남은 공격력 : ", zd)
+        ph = ph - goda
         print("당신의 체력 : ", ph)
         if (ph <= 0) :
             print("그렇습니다 당신은 망했습니다.")
@@ -437,7 +513,21 @@ def berdrop():
     print("광전사의 도끼를 발견했다.")
     print("------------------------------------")
     time.sleep(2)
-
+ # 유령 보상
+def ghostdrop():
+    global Pmoney
+    global ghud
+    Dmoney = random.randint(50, 70)
+    print(Dmoney, "원 드랍")
+    Pmoney = Pmoney + Dmoney
+    print("소지한 돈 : ", Pmoney)
+    item = ghdrop()
+    print(item)
+    if (item%5 == 0):
+        ghud = ghud + 1
+        print("유령의 망토를 발견했다.")
+    print("------------------------------------")
+    time.sleep(2)
 # 진행
 slime()
 time.sleep(2)
@@ -576,4 +666,19 @@ berser()
 time.sleep(2)
 berdrop()
 berhp = 100
+ghost()
+time.sleep(2)
+ghostdrop()
+goh = 50
+time.sleep(2)
+ghost()
+time.sleep(2)
+ghostdrop()
+goh = 50
+time.sleep(2)
+ghost()
+time.sleep(2)
+ghostdrop()
+goh = 50
+time.sleep(2)
 print("끝이다요")
