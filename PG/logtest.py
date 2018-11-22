@@ -2,8 +2,8 @@ import random
 import time
 
 # 플레이어
-ph = 500
-dice = 40
+ph = 50
+dice = 4
 drem = 0
 pda = 0
 pdf = 0
@@ -34,15 +34,15 @@ berda = 0
 berpda = 10
 # 2 stage
 # 유령 회피
-goh = 30
+goh = 50
 goa = 5
 goda = 0
 godo = 0
 # 사냥꾼
-huh = 50
+huh = 70
 hua = 5
 hud = 0
-hup = 3
+hup = 5
 # 거인
 jh = 150
 jd = 0
@@ -60,6 +60,7 @@ skhead = 0
 gel = 0
 paxe = 0
 ghud = 0
+hubow = 0
 
 
 # 이벤트 함수
@@ -87,24 +88,27 @@ def heal():
 def smdrop():
     sgel = random.randint(1, 20)
     return sgel
-    # 좀비
 
-
+# 좀비
 def zomdrop():
     zomdice = random.randint(1, 20)
     return zomdice
-    # 해골 기사
 
-
+# 해골 기사
 def skedrop():
     shead = random.randint(1, 20)
     return shead
-    # 유령
 
-
+# 유령
 def ghdrop():
     ghu = random.randint(1, 20)
     return ghu
+
+
+# 사냥꾼
+def hudrop():
+    hubow = random.randint(1, 20)
+    return hubow
 
 
 # 치명타 함수
@@ -157,7 +161,7 @@ def slime():
         print("방어도 : ", pdf, " + ", skhead * 5)
         time.sleep(1)
         pf = pdf
-        sh = sh - (pda + plusp)
+        sh = sh - (pda + plusp) + (hubow * 10) + (ghud * 5)
 
         print("남은 슬라임의 체력 : ", sh)
         print("------------------------------------")
@@ -230,7 +234,7 @@ def zombie():
         print("방어도 : ", pdf, " + ", skhead * 5)
         time.sleep(1)
         pf = pdf
-        zh = zh - (pda + plusp)
+        zh = zh - (pda + plusp) + (hubow * 10) + (ghud * 5)
 
         print("남은 좀비의 체력 : ", zh)
         print("------------------------------------")
@@ -304,7 +308,7 @@ def skeleton():
         time.sleep(1)
         pdf = pdf + (skhead * 5)
         pf = pdf
-        skh = skh - (pda + plusp)
+        skh = skh - (pda + plusp) + (hubow * 10) + (ghud * 5)
 
         print("남은 해골기사의 체력 : ", skh)
         print("------------------------------------")
@@ -377,7 +381,7 @@ def berser():
         time.sleep(1)
         pdf = pdf + (skhead * 5)
         pf = pdf
-        berhp = berhp - (pda + plusp)
+        berhp = berhp - (pda + plusp) + (hubow * 10) + (ghud * 5)
 
         print("남은 광전사의 체력 : ", berhp)
         print("------------------------------------")
@@ -456,12 +460,13 @@ def ghost():
         pdf = pdf + (skhead * 5)
         pf = pdf
         godo = random.randint(1, 6)
+        print(godo)
         if (godo > 4):
             print("!감나빗")
             time.sleep(1)
         else:
             time.sleep(1)
-            goh = goh - (pda + plusp - goa)
+            goh = goh - (pda + plusp - goa) + (hubow * 10) + (ghud * 5)
         print("남은 유령의 체력 : ", goh, " 방어력 : ", goa)
         godo = 0
         print("------------------------------------")
@@ -483,6 +488,77 @@ def ghost():
                 goda = 0
         print("유령의 남은 공격력 : ", goda)
         ph = ph - goda
+        print("당신의 체력 : ", ph)
+        if (ph <= 0):
+            print("그렇습니다 당신은 망했습니다.")
+            exit()
+        print("------------------------------------")
+
+def hunter():
+    print("사냥꾼이즈 커밍")
+
+    while True:
+        global huh
+        global ph
+        global hud
+        global hup
+        global pcri
+        global pdf
+        pda = 0
+        pdf = 0
+        hud = 0
+        Pdice = zdice + 0
+        time.sleep(2)
+        print("당신의 턴")
+        print("주사위 갯수", dice)
+        print("추가 주사위", Pdice)
+        print("공격할 횟수 (나머진 방어)")
+        att = int(input())
+        if (att == 4444):
+            print("죽어라")
+            print("-------------------")
+            break
+        if (att > dice + Pdice):
+            print("갯수 초과", dice + Pdice, "개로 변경")
+            att = dice + Pdice
+        drem = dice + Pdice - att
+        for i in range(0, att):
+            pda = random.randint(1, 6) + pda
+        pcri = critical()
+        pcri = (paxe * 2) + pcri
+        # print(pcri)
+        if (pcri >= 8):
+            print("크리티컬!!")
+            time.sleep(2)
+            pda = pda * 2
+        for j in range(0, drem):
+            pdf = random.randint(1, 6) + pdf
+        print("공격력 : ", pda, " + ", plusp + (ghud * 5))
+        print("방어도 : ", pdf, " + ", skhead * 5)
+        pdf = pdf + (skhead * 5)
+        pf = pdf
+        time.sleep(1)
+        huh = huh - (pda + plusp - hua) + (hubow * 10) + (ghud * 5)
+        print("남은 사냥꾼의 체력 : ", huh, " 방어력 : ", hua)
+        print("------------------------------------")
+        time.sleep(1)
+        if (huh <= 0):
+            ph = ph + (gel * 3)
+            print("남은체력 : ", ph)
+            break
+        print("사냥꾼의 공격!")
+        time.sleep(2)
+        hud = random.randint(10, 15)
+        print("사냥꾼의 공격력 + 독 : ", hud + hup)
+        print("당신의 방어력 : ", pdf)
+        time.sleep(2)
+        if (pdf > 0):
+            pdf = skhead * 5 + pdf - hud
+            hud = hud - pf
+            if (hud < 0):
+                hud = 0
+        print("사냥꾼의 남은 공격력 : ", hud)
+        ph = ph - hud
         print("당신의 체력 : ", ph)
         if (ph <= 0):
             print("그렇습니다 당신은 망했습니다.")
@@ -520,11 +596,11 @@ def scin():
         pdf = 0
         scd = 0
         dbf = 0
-        Pdice = zdice + 0
+        Pdice = zdice + 0 - mdice
         time.sleep(2)
         print("당신의 턴")
         print("주사위 갯수", dice)
-        print("추가 주사위", Pdice - mdice)
+        print("추가 주사위", Pdice)
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
         if (att == 4444):
@@ -551,7 +627,7 @@ def scin():
         time.sleep(1)
         pdf = pdf + (skhead * 5)
         pf = pdf
-        sch = sch - (pda + plusp - sca)
+        sch = sch - (pda + plusp - sca) + (hubow * 10) + (ghud * 5)
         print("남은 과학자의 체력 : ", sch)
         print("------------------------------------")
         time.sleep(1)
@@ -661,6 +737,21 @@ def ghostdrop():
     print("------------------------------------")
     time.sleep(2)
 
+# 사냥꾼 보상
+def hunterdrop():
+    global Pmoney
+    global hubow
+    Dmoney = random.randint(70, 90)
+    print(Dmoney, "원 드랍")
+    Pmoney = Pmoney + Dmoney
+    print("소지한 돈 : ", Pmoney)
+    item = hudrop()
+    print(item)
+    if (item % 5 == 0):
+        hubow = hubow + 1
+        print("사냥꾼의 활을 발견했다.")
+    print("------------------------------------")
+    time.sleep(2)
 
 while True:
     # 진행
@@ -842,6 +933,45 @@ while True:
     time.sleep(2)
     ghostdrop()
     goh = 50
+    time.sleep(2)
+    zone = random.randint(1, 3)
+    if (zone == 1):
+        print("힘의 제단이다")
+        time.sleep(2)
+        pluspower = powergod()
+        print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
+        plusp = pluspower + plusp
+        print("힘 : ", plusp)
+    elif (zone == 2):
+        print("주사위의 제단이다")
+        time.sleep(2)
+        plusdice = dicegod()
+        print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
+        dice = dice + plusdice
+        print("주사위 : ", dice)
+    else:
+        print("치료소다")
+        time.sleep(2)
+        plushp = heal()
+        print("당신의 체력이 ", plushp, " 만큼 증가되었다")
+        ph = ph + plushp
+        print("체력 : ", ph)
+    zone = 0
+    time.sleep(2)
+    hunter()
+    time.sleep(2)
+    hunterdrop()
+    huh = 70
+    time.sleep(2)
+    hunter()
+    time.sleep(2)
+    hunterdrop()
+    huh = 70
+    time.sleep(2)
+    hunter()
+    time.sleep(2)
+    hunterdrop()
+    huh = 70
     time.sleep(2)
     print ("계속할가?      1 한다      2 안한다")
     again = int(input())
