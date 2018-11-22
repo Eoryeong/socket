@@ -128,6 +128,10 @@ def slime() :
         print("추가 주사위", Pdice)
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
+        if (att == 4444):
+            print("죽어라")
+            print("-------------------")
+            break
         if (att > dice+Pdice ):
             print("갯수 초과", dice+Pdice, "개로 변경")
             att = dice+Pdice
@@ -196,6 +200,10 @@ def zombie() :
         print("추가 주사위", Pdice)
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
+        if (att == 4444):
+            print("죽어라")
+            print("-------------------")
+            break
         if (att > dice+Pdice ):
             print("갯수 초과", dice+Pdice, "개로 변경")
             att = dice+Pdice
@@ -264,6 +272,10 @@ def skeleton():
         print("추가 주사위", Pdice)
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
+        if (att == 4444):
+            print("죽어라")
+            print("-------------------")
+            break
         if (att > dice + Pdice):
             print("갯수 초과", dice + Pdice, "개로 변경")
             att = dice + Pdice
@@ -331,6 +343,10 @@ def berser():
         print("추가 주사위", Pdice)
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
+        if (att == 4444):
+            print("죽어라")
+            print("-------------------")
+            break
         if (att > dice + Pdice):
             print("갯수 초과", dice + Pdice, "개로 변경")
             att = dice + Pdice
@@ -404,6 +420,10 @@ def ghost() :
         print("추가 주사위", Pdice)
         print("공격할 횟수 (나머진 방어)")
         att = int(input())
+        if (att == 4444):
+            print("죽어라")
+            print("-------------------")
+            break
         if (att > dice+Pdice ):
             print("갯수 초과", dice+Pdice, "개로 변경")
             att = dice+Pdice
@@ -419,19 +439,19 @@ def ghost() :
             pda = pda * 2
         for j in range (0, drem):
             pdf = random.randint(1, 6) + pdf
-        print("공격력 : ", pda, " + ", plusp)
+        print("공격력 : ", pda, " + ", plusp + (ghud*5))
         print("방어도 : ", pdf, " + ", skhead*5)
+        pdf = pdf + (skhead * 5)
+        pf = pdf
         godo = random.randint(1, 6)
         if (godo > 4) :
-            time.sleep(1)
-            pdf = pdf + (skhead * 5)
-            pf = pdf
-            goh = goh - (pda + plusp - goa)
-        else :
             print("!감나빗")
             time.sleep(1)
-
+        else :
+            time.sleep(1)
+            goh = goh - (pda + plusp - goa)
         print("남은 유령의 체력 : ", goh," 방어력 : ", goa)
+        godo = 0
         print("------------------------------------")
         time.sleep(1)
         if (goh <= 0) :
@@ -532,157 +552,193 @@ def ghostdrop():
         print("유령의 망토를 발견했다.")
     print("------------------------------------")
     time.sleep(2)
-# 진행
-slime()
-time.sleep(2)
-smiledrop()
-sh = 15
-slime()
-time.sleep(2)
-smiledrop()
-sh = 15
-slime()
-time.sleep(2)
-smiledrop()
-sh = 15
-time.sleep(2)
-zone = random.randint(1, 3)
-if (zone == 1):
-    print("힘의 제단이다")
+    
+while True:  
+    # 진행
+    slime()
     time.sleep(2)
-    pluspower = powergod()
-    print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
-    plusp = pluspower + plusp
-    print("힘 : ", plusp)
-elif (zone == 2):
-    print("주사위의 제단이다")
+    smiledrop()
+    sh = 15
+    slime()
     time.sleep(2)
-    plusdice = dicegod()
-    print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
-    dice = dice + plusdice
-    print("주사위 : ", dice)
-else :
-    print("치료소다")
+    smiledrop()
+    sh = 15
+    slime()
     time.sleep(2)
-    plushp = heal()
-    print("당신의 체력이 ", plushp, " 만큼 증가되었다")
-    ph = ph + plushp
-    print("체력 : ", ph)
-time.sleep(2)
-zombie()
-time.sleep(2)
-zombiedrop()
-zh = 20
-zombie()
-time.sleep(2)
-zombiedrop()
-zh = 20
-zombie()
-time.sleep(2)
-zombiedrop()
-zh = 20
-zone = random.randint(1, 3)
-if (zone == 1):
-    print("힘의 제단이다")
+    smiledrop()
+    sh = 15
     time.sleep(2)
-    pluspower = powergod()
-    print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
-    plusp = pluspower + plusp
-    print("힘 : ", plusp)
-elif (zone == 2):
-    print("주사위의 제단이다")
+    zone = random.randint(1, 3)
+    if (zone == 1):
+        print("힘의 제단이다")
+        time.sleep(2)
+        pluspower = powergod()
+        print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
+        plusp = pluspower + plusp
+        print("힘 : ", plusp)
+    elif (zone == 2):
+        print("주사위의 제단이다")
+        time.sleep(2)
+        plusdice = dicegod()
+        print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
+        dice = dice + plusdice
+        print("주사위 : ", dice)
+    else :
+        print("치료소다")
+        time.sleep(2)
+        plushp = heal()
+        print("당신의 체력이 ", plushp, " 만큼 증가되었다")
+        ph = ph + plushp
+        print("체력 : ", ph)
+    zone = 0
     time.sleep(2)
-    plusdice = dicegod()
-    print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
-    dice = dice + plusdice
-    print("주사위 : ", dice)
-else :
-    print("치료소다")
+    zombie()
     time.sleep(2)
-    plushp = heal()
-    print("당신의 체력이 ", plushp, " 만큼 증가되었다")
-    ph = ph + plushp
-    print("체력 : ", ph)
-time.sleep(2)
-skeleton()
-time.sleep(2)
-skeletondrop()
-skh = 30
-skeleton()
-time.sleep(2)
-skeletondrop()
-skh = 30
-skeleton()
-time.sleep(2)
-skeletondrop()
-skh = 30
-time.sleep(2)
-if (zone == 1):
-    print("힘의 제단이다")
+    zombiedrop()
+    zh = 20
+    zombie()
     time.sleep(2)
-    pluspower = powergod()
-    print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
-    plusp = pluspower + plusp
-    print("힘 : ", plusp)
-elif (zone == 2):
-    print("주사위의 제단이다")
+    zombiedrop()
+    zh = 20
+    zombie()
     time.sleep(2)
-    plusdice = dicegod()
-    print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
-    dice = dice + plusdice
-    print("주사위 : ", dice)
-else :
-    print("치료소다")
+    zombiedrop()
+    zh = 20
+    zone = random.randint(1, 3)
+    if (zone == 1):
+        print("힘의 제단이다")
+        time.sleep(2)
+        pluspower = powergod()
+        print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
+        plusp = pluspower + plusp
+        print("힘 : ", plusp)
+    elif (zone == 2):
+        print("주사위의 제단이다")
+        time.sleep(2)
+        plusdice = dicegod()
+        print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
+        dice = dice + plusdice
+        print("주사위 : ", dice)
+    else :
+        print("치료소다")
+        time.sleep(2)
+        plushp = heal()
+        print("당신의 체력이 ", plushp, " 만큼 증가되었다")
+        ph = ph + plushp
+        print("체력 : ", ph)
+    zone = 0
     time.sleep(2)
-    plushp = heal()
-    print("당신의 체력이 ", plushp, " 만큼 증가되었다")
-    ph = ph + plushp
-    print("체력 : ", ph)
-time.sleep(2)
-while True :
-    print("----------상점----------")
-    print("아이템 사기 : 숫자 입력")
-    print("보유한 돈 : ", Pmoney)
-    print("1. 슬라임 점액 100원 | 2. 좀비 주사위 120원 | 3. 해골기사 머리 120원 | 4. 힘의 문장 80원 | 5. 가기")
-    print("----------상점----------")
-    shop = int(input())
-    if (shop == 1 and Pmoney >= 100) :
-        gel = gel + 1
-        Pmoney = Pmoney - 100
-        print("점액을 샀다")
-    elif (shop == 2 and Pmoney >= 120) :
-        zdice = zdice + 1
-        Pmoney = Pmoney - 120
-        print("주사위를 샀다")
-    elif (shop == 3 and Pmoney >= 120) :
-        skhead = skhead + 1
-        Pmoney = Pmoney - 120
-        print("머리를 샀다.")
-    elif (shop == 4 and Pmoney >= 80) :
-        plusp = plusp + 2
-        Pmoney = Pmoney - 80
-        print("강해졌다 힘 + 2")
-    elif (shop == 5):
-        print("나갔다")
+    skeleton()
+    time.sleep(2)
+    skeletondrop()
+    skh = 30
+    skeleton()
+    time.sleep(2)
+    skeletondrop()
+    skh = 30
+    skeleton()
+    time.sleep(2)
+    skeletondrop()
+    skh = 30
+    time.sleep(2)
+    zone = random.randint(1, 3)
+    if (zone == 1):
+        print("힘의 제단이다")
+        time.sleep(2)
+        pluspower = powergod()
+        print("당신의 힘이 ", pluspower, " 만큼 증가 했다")
+        plusp = pluspower + plusp
+        print("힘 : ", plusp)
+    elif (zone == 2):
+        print("주사위의 제단이다")
+        time.sleep(2)
+        plusdice = dicegod()
+        print("당신의 주사위가 ", plusdice, " 만큼 증가 했다")
+        dice = dice + plusdice
+        print("주사위 : ", dice)
+    else :
+        print("치료소다")
+        time.sleep(2)
+        plushp = heal()
+        print("당신의 체력이 ", plushp, " 만큼 증가되었다")
+        ph = ph + plushp
+        print("체력 : ", ph)
+    zone = 0
+    time.sleep(2)
+    while True :
+        print("----------상점----------")
+        print("아이템 사기 : 숫자 입력")
+        print("보유한 돈 : ", Pmoney)
+        print("1. 슬라임 점액 100원 | 2. 좀비 주사위 120원 | 3. 해골기사 머리 120원 | 4. 힘의 문장 80원 | 5. 가기")
+        print("----------상점----------")
+        shop = int(input())
+        if (shop == 1 and Pmoney >= 100) :
+            gel = gel + 1
+            Pmoney = Pmoney - 100
+            print("점액을 샀다")
+        elif (shop == 2 and Pmoney >= 120) :
+            zdice = zdice + 1
+            Pmoney = Pmoney - 120
+            print("주사위를 샀다")
+        elif (shop == 3 and Pmoney >= 120) :
+            skhead = skhead + 1
+            Pmoney = Pmoney - 120
+            print("머리를 샀다.")
+        elif (shop == 4 and Pmoney >= 80) :
+            plusp = plusp + 2
+            Pmoney = Pmoney - 80
+            print("강해졌다 힘 + 2")
+        elif (shop == 5):
+            print("나갔다")
+            break
+    time.sleep(2)
+    berser()
+    time.sleep(2)
+    berdrop()
+    berhp = 100
+    zone = random.randint(1, 3)
+    if (zone == 1):
+        print("강력한 힘의 제단이다")
+        time.sleep(2)
+        pluspower = powergod()
+        print("당신의 힘이 ", pluspower + 5, " 만큼 증가 했다")
+        plusp = pluspower + plusp
+        print("힘 : ", plusp)
+    elif (zone == 2):
+        print("강력한 주사위의 제단이다")
+        time.sleep(2)
+        plusdice = dicegod()
+        print("당신의 주사위가 ", plusdice + 2, " 만큼 증가 했다")
+        dice = dice + plusdice
+        print("주사위 : ", dice)
+    else :
+        print("고급 치료소다")
+        time.sleep(2)
+        plushp = heal()
+        print("당신의 체력이 ", plushp + 20, " 만큼 증가되었다")
+        ph = ph + plushp
+        print("체력 : ", ph)
+    zone = 0
+    ghost()
+    time.sleep(2)
+    ghostdrop()
+    goh = 50
+    time.sleep(2)
+    ghost()
+    time.sleep(2)
+    ghostdrop()
+    goh = 50
+    time.sleep(2)
+    ghost()
+    time.sleep(2)
+    ghostdrop()
+    goh = 50
+    time.sleep(2)
+    print ("계속할가?      1 한다      2 안한다")
+    again = int(input())
+    if (again == 1):
+        print ("ㅇㅇ")
+    else :
+        print("끝이다요")
         break
-time.sleep(2)
-berser()
-time.sleep(2)
-berdrop()
-berhp = 100
-ghost()
-time.sleep(2)
-ghostdrop()
-goh = 50
-time.sleep(2)
-ghost()
-time.sleep(2)
-ghostdrop()
-goh = 50
-time.sleep(2)
-ghost()
-time.sleep(2)
-ghostdrop()
-goh = 50
-time.sleep(2)
-print("끝이다요")
+    print ("다시간다")

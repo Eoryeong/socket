@@ -419,15 +419,16 @@ def ghost() :
             pdf = random.randint(1, 6) + pdf
         print("공격력 : ", pda, " + ", plusp)
         print("방어도 : ", pdf, " + ", skhead*5)
+        pdf = pdf + (skhead * 5)
+        pf = pdf
         godo = random.randint(1, 6)
+        print(godo)
         if (godo > 4) :
-            time.sleep(1)
-            pf = pdf
-            goh = goh - (pda + plusp - goa)
-        else :
             print("!감나빗")
             time.sleep(1)
-
+        else :
+            time.sleep(1)
+            goh = goh - (pda + plusp - goa)
         print("남은 유령의 체력 : ", goh," 방어력 : ", goa)
         print("------------------------------------")
         time.sleep(1)
