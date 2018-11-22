@@ -282,6 +282,7 @@ def skeleton():
         print("공격력 : ", pda, " + ", plusp)
         print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
+        pdf = pdf + (skhead*5)
         pf = pdf
         skh = skh - (pda + plusp)
 
@@ -348,6 +349,7 @@ def berser():
         print("공격력 : ", pda, " + ", plusp)
         print("방어도 : ", pdf, " + ", skhead*5)
         time.sleep(1)
+        pdf = pdf + (skhead * 5)
         pf = pdf
         berhp = berhp - (pda + plusp)
 
@@ -382,8 +384,8 @@ def berser():
         print("------------------------------------")
 
     # 유령
-def zombie() :
-    print("좀비이즈 커밍")
+def ghost() :
+    print("유령이즈 커밍")
 
     while True:
         global goh
@@ -422,12 +424,14 @@ def zombie() :
         godo = random.randint(1, 6)
         if (godo > 4) :
             time.sleep(1)
+            pdf = pdf + (skhead * 5)
             pf = pdf
-            goh = goh - (pda + plusp)
+            goh = goh - (pda + plusp - goa)
         else :
             print("!감나빗")
+            time.sleep(1)
 
-        print("남은 유령의 체력 : ", goh)
+        print("남은 유령의 체력 : ", goh," 방어력 : ", goa)
         print("------------------------------------")
         time.sleep(1)
         if (goh <= 0) :
@@ -445,7 +449,7 @@ def zombie() :
             goda = goda - pf
             if (goda < 0):
                 goda = 0
-        print("유령의 남은 공격력 : ", zd)
+        print("유령의 남은 공격력 : ", goda)
         ph = ph - goda
         print("당신의 체력 : ", ph)
         if (ph <= 0) :
@@ -633,7 +637,7 @@ else :
     plushp = heal()
     print("당신의 체력이 ", plushp, " 만큼 증가되었다")
     ph = ph + plushp
-    print("체력 : ", hp)
+    print("체력 : ", ph)
 time.sleep(2)
 while True :
     print("----------상점----------")
