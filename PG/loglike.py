@@ -476,6 +476,94 @@ def ghost() :
             print("그렇습니다 당신은 망했습니다.")
             exit()
         print("------------------------------------")
+# 과학자
+def scin():
+    print("과학자 커밍")
+
+    while True:
+
+        global sch
+        global ph
+        global scd
+        global pcri
+        global pdf
+        dok = 0
+        mdice = 0
+        mpower = 0
+        dbf = random.randint(1, 3)
+        if (dbf == 1):
+            print("과학자가 독이든 병을 던졌습니다!!")
+            dok = 20
+            ph = ph - dok
+            print("당신의 체력 : ", ph)
+        elif (dbf == 2):
+            print("과학자가 당신의 추가 주사위를 제거했습니다!!")
+            mdice = zdice
+        elif (dbf == 3):
+            print("과학자가 당신의 힘을 약화했습니다!!")
+            mpower = 20
+        pda = 0
+        pdf = 0
+        scd = 0
+        dbf = 0
+        Pdice = zdice + 0 - mdice
+        time.sleep(2)
+        print("당신의 턴")
+        print("주사위 갯수", dice)
+        print("추가 주사위", Pdice - mdice)
+        print("공격할 횟수 (나머진 방어)")
+        att = int(input())
+        if (att == 4444):
+            print("죽어라")
+            print("-------------------")
+            break
+        if (att > dice + Pdice):
+            print("갯수 초과", dice + Pdice, "개로 변경")
+            att = dice + Pdice
+        drem = dice + Pdice - att
+        for i in range(0, att):
+            pda = random.randint(1, 6) + pda
+        pcri = critical()
+        pcri = (paxe * 2) + pcri
+        # print(pcri)
+        if (pcri >= 8):
+            print("크리티컬!!")
+            time.sleep(2)
+            pda = pda * 2
+        for j in range(0, drem):
+            pdf = random.randint(1, 6) + pdf
+        print("공격력 : ", pda, " + ", plusp + (ghud*5) - mpower)
+        print("방어도 : ", pdf, " + ", skhead*5)
+        time.sleep(1)
+        pdf = pdf + (skhead*5)
+        pf = pdf
+        sch = sch - (pda + plusp - sca)
+        print("남은 과학자의 체력 : ", sch)
+        print("------------------------------------")
+        time.sleep(1)
+        if (sch <= 0):
+            ph = ph + (gel * 3)
+            print("남은체력 : ", ph)
+            break
+        print("과학자의 공격!")
+        time.sleep(2)
+        scd = random.randint(20, 30)
+        print("과학자의 공격력 : ", scd)
+        print("당신의 방어력 : ", pdf)
+        time.sleep(2)
+        if (pdf > 0):
+            pdf = skhead * 5 + pdf - scd
+            scd = scd - pf
+            if (scd < 0):
+                scd = 0
+        print("과학자의 남은 공격력 : ", scd)
+        ph = ph - scd
+        print("당신의 체력 : ", ph)
+        if (ph <= 0) :
+            print("그렇습니다 당신은 망했습니다.")
+            exit()
+        print("------------------------------------")
+
 
 
 
@@ -742,3 +830,7 @@ while True:
         print("끝이다요")
         break
     print ("다시간다")
+time.sleep(2)
+scin()
+time.sleep(2)
+print("승리!")
