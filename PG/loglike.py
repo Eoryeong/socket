@@ -19,6 +19,7 @@ shop = 0
 
 
 # 몹
+# 1 stage
 Dmoney = 0
 # 좀비
 zh = 20
@@ -33,6 +34,7 @@ sd = 0
 berhp = 100
 berda = 0
 berpda = 10
+# 2 stage
 # 유령 회피
 goh = 30
 goda = 0
